@@ -1,0 +1,8 @@
+GET {{host}}/jokes
+
+###
+GET {{host}}/jokes/chuck-norris
+
+###
+
+GET {{host}}/jokes/kanye-west

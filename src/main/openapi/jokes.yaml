@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Jokes
+  description: Jokes
+  version: 1.0.0
+paths:
+  /jokes:
+    summary: The best jokes on the world wide web
+    get:
+      operationId: getAvailableJokeSources
+      description: Return the available joke sources
+      summary: This endpoint returns the available integrated joke sources
+      responses:
+        200:
+          description: All available sources
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Source'
+
+  /jokes/{source}:
+    summary: Get a random joke from the source
+    get:
+      operationId: getRandomJoke
+      description: Get a random joke
+      summary: Get a random joke using the source
+      parameters:
+        - name: source
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A random joke
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/Joke"
+
+
+components:
+  schemas:
+    Source:
+      description: ''
+      type: "object"
+      properties:
+        name:
+          type: "string"
+
+    Joke:
+      description: ''
+      type: object
+      properties:
+        joke:
+          type: string
+        source:
+          type: string
